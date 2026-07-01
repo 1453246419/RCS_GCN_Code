@@ -1,0 +1,41 @@
+seed: 42
+device: cuda:0
+
+data:
+  data_path: /path/to/private/all_data_12ch.npy
+  label_path: /path/to/private/all_label.pkl
+  split_dir: /path/to/private/splits_seed42
+  num_workers: 4
+
+split:
+  n_splits: 5
+  shuffle: true
+  random_state: 42
+
+model:
+  num_class: 4
+  num_point: 25
+  num_person: 1
+  in_channels: 12
+  dropout: 0.5
+
+training:
+  epochs: 100
+  warmup_epochs: 20
+  batch_size: 8
+  eval_batch_size: 8
+  optimizer: SGD
+  learning_rate: 0.001
+  momentum: 0.9
+  nesterov: true
+  weight_decay: 0.0005
+  lr_milestones: [30, 60, 80]
+  lr_gamma: 0.1
+  mask_learning_rate: 0.001
+  mask_weight_decay: 0.0005
+  lambda_feature_perturbation: 1.0
+  lambda_invariance: 1.0
+  gradient_clip_norm: 5.0
+
+output_dir: outputs/rcs_gcn_12ch
+
